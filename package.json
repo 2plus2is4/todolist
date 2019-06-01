@@ -1,7 +1,7 @@
 {
   "name": "todolist",
   "version": "0.1.0",
-  "homepage": "https://2plus2is4.github.io/2plus2is4/todolist",
+  "homepage": "https://2plus2is4.github.io/todolist/",
   "private": true,
   "dependencies": {
     "gh-pages": "^2.0.1",
