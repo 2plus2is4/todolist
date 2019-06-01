@@ -6,8 +6,8 @@ class App extends React.Component {
 
   state = {
     tasks: [
-      { id: 1, todo: "finish Sekrio" },
-      { id: 2, todo: "finish Sekrio NG+" }
+      { id: 1, todo: "dont click me" },
+      { id: 2, todo: "clean tour room ffs" }
     ],
     show: [(<AddTodo added={this.added} />)],
     finished: [
@@ -58,14 +58,14 @@ class App extends React.Component {
       <div className="todo-app container">
         <h1 className="center blue-text">Your TODOs</h1>
 
-        <div className="row">
+        {/* <div className="row">
           <div className="col s12">
             <ul className="tabs">
               <li className="tab col s6" onClick={this.switched}><a className="active" href="#test2"  id="list">Todos</a></li>
               <li className="tab col s6" onClick={this.switched}><a href="#test4" id="complete">Completed</a></li>
             </ul>
           </div>
-        </div>
+        </div> */}
 
         <AddTodo added={this.added} />
         <Todos Todos={this.state.tasks} deleteTodo={this.clicked}/>
