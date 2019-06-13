@@ -1,6 +1,15 @@
 import React from 'react';
 import Todos from './todos';
 import AddTodo from './addTodo';
+import Done from './done';
+var $ = require('jquery');
+// var M = require('materialize-css');
+
+
+
+
+// let instance = M.Tabs.init();
+
 
 class App extends React.Component {
 
@@ -9,29 +18,38 @@ class App extends React.Component {
       { id: 1, todo: "dont click me" },
       { id: 2, todo: "clean tour room ffs" }
     ],
-    show: [(<AddTodo added={this.added} />)],
     finished: [
-
     ]
+
   }
 
-  clicked = (id) => {
-    let newList = this.state.tasks.filter(todo => {
-      return todo.id !== id
-    });
+  clicked = (id, type) => {
+    if (type === 0) {
+      let newList = this.state.tasks.filter(todo => {
+        return todo.id !== id
+      });
 
-    let newfinished = this.state.tasks.filter(todo => {
-      return todo.id === id
-    });
-    newfinished = [...this.state.finished, newfinished];
+      let newfinished = this.state.tasks.filter(todo => {
+        return todo.id === id
+      })[0];
+      newfinished = [...this.state.finished, newfinished];
 
-    this.setState({
-      tasks: newList,
-      finished: newfinished
-    });
+      this.setState({
+        tasks: newList,
+        finished: newfinished
+      });
+    } else {
+      let newList = this.state.finished.filter(todo => {
+        return todo.id !== id
+      });
+
+      this.setState({
+        finished: newList
+      });
+    }
 
     console.log(this.state);
-    
+
   }
 
   added = (todo) => {
@@ -47,29 +65,40 @@ class App extends React.Component {
 
   switched = (e) => {
     console.log(e.target.id);
-    this.setState({
-      show: e.target.id === "list" ? [(<AddTodo added={this.added} />),(<Todos Todos={this.state.tasks} deleteTodo={this.clicked} />)]
-        : null
-     })
+    console.log($('#page1'), $('#page2'));
+    if (e.target.id === 'list') {
+      $('#page2').hide();
+      $('#page1').show();
+      $('#complete').removeClass('active'); 
+      $('#list').addClass('active');
+    } else {
+      $('#page1').hide();
+      $('#page2').show();
+      $('#list').removeClass('active'); 
+      $('#complete').addClass('active');
+    }
   }
+  
 
   render() {
     return (
       <div className="todo-app container">
         <h1 className="center blue-text">Your TODOs</h1>
-
-        {/* <div className="row">
-          <div className="col s12">
-            <ul className="tabs">
-              <li className="tab col s6" onClick={this.switched}><a className="active" href="#test2"  id="list">Todos</a></li>
-              <li className="tab col s6" onClick={this.switched}><a href="#test4" id="complete">Completed</a></li>
+        <div className="row">
+          <div className="center col 12 s12">
+            <ul className="center tabs col 12 s12">
+              <li className="tab col 6 s6" onClick={this.switched}><a className="active" href="#page2" id="list">Todos</a></li>
+              <li className="tab col 6 s6" onClick={this.switched}><a href="#page1" id="complete">Completed</a></li>
             </ul>
+            <div className="container 12 s12" id="page1">
+              <AddTodo added={this.added} />
+              <Todos Todos={this.state.tasks} deleteTodo={this.clicked} />
+            </div>
+            <div className="container 12 s12" id="page2" >
+              <Done Finished={this.state.finished} deleteTodo={this.clicked} />
+            </div>
           </div>
-        </div> */}
-
-        <AddTodo added={this.added} />
-        <Todos Todos={this.state.tasks} deleteTodo={this.clicked}/>
-        {/* {this.state.show} */}
+        </div>
       </div>
     );
   }

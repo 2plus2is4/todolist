@@ -12,18 +12,49 @@ code {
     monospace;
 }
 
+body {
+  display: flex;
+  min-height: 100vh;
+  flex-direction: column;
+}
+
 main {
   flex: 1 0 auto;
 }
 
 footer{
-  position: fixed;
-  left: 0;
-  bottom: 0;
-  width: 100%;
   background: lightskyblue;
 }
 
 #imtodo:hover{
   text-decoration: line-through;
+}
+
+#page2{
+  display: none;
+}
+
+.tabs .tab a {
+  color: #70abad;
+}
+
+.tabs .tab a:hover {
+  color: #509c9e;
+  background-color: #26a69957;
+}
+
+.tabs .tab a.active {
+  color: #ffffff;
+  background-color: #26a69a;
+}
+
+.tabs .tab a.active:hover {
+  color: #ffffff;
+  background-color: #26a69a;
+}
+
+.page-footer {
+  padding-top: 20px;
+  color: #fff;
+  background-color: #26a69a;
 }
