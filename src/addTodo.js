@@ -23,8 +23,8 @@ class addTodo extends React.Component{
     render() {
         return (
             <form className="col 12 s12" onSubmit={this.submitted}>
-                <input className="input-field col 10 s10" placeholder="add some todos" id="todo" onChange={this.changed} value={this.state.todo}/>
-                <button className="btn waves-effect waves-light col 2 s2" type="submit">Submit</button>
+                <input className="input-field col 10 s9" placeholder="add some todos" id="todo" onChange={this.changed} value={this.state.todo}/>
+                <button className="btn waves-effect waves-light col 2 s3" type="submit">Submit</button>
             </form>
         )
     }

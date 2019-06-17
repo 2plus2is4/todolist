@@ -69,12 +69,12 @@ class App extends React.Component {
     if (e.target.id === 'list') {
       $('#page2').hide();
       $('#page1').show();
-      $('#complete').removeClass('active'); 
+      $('#complete').removeClass('active');
       $('#list').addClass('active');
     } else {
       $('#page1').hide();
       $('#page2').show();
-      $('#list').removeClass('active'); 
+      $('#list').removeClass('active');
       $('#complete').addClass('active');
     }
   }
